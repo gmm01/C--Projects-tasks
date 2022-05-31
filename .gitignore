@@ -1,32 +1,91 @@
-# Prerequisites
-*.d
+#include <iostream>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+void getDataPurchases(double &num_purchases, double &purchase_price, double &pur_comm_rate);
+void getDataSell(double &num_shares, double &sell_price, double &sell_comm_rate);
+double calculateTotalpaid(double &num_purchases, double &purchase_price, double &pur_comm_rate, double &totalPaid);
+double calculateTotalReceived(double &num_shares, double &sell_price, double &sell_comm_rate, double &totalReceived);
+double calculateLossGain(double &totalReceived, double &totalPaid, double &profitOrloss);
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
+int main()
+{
+  double
+    num_purchases,
+    purchase_price,
+    pur_comm_rate,
+    num_shares,
+    sell_price,
+    sell_comm_rate,
+    totalPaid,
+    totalReceived,
+    profitOrloss;
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+    getDataPurchases(num_purchases, purchase_price, pur_comm_rate);
+    getDataSell(num_shares, sell_price, sell_comm_rate);
+    cout << "**************************Stocks Bought******************************************" << endl;
+    calculateTotalpaid(num_purchases, purchase_price, pur_comm_rate, totalPaid);
+    cout << "**************************Selling Stocks*****************************************" << endl;
+    calculateTotalReceived(num_shares, sell_price, sell_comm_rate, totalReceived);
+    calculateLossGain(totalReceived, totalPaid, profitOrloss);
 
-# Executables
-*.exe
-*.out
-*.app
+}
+void getDataPurchases(double &num_purchases, double &purchase_price, double &pur_comm_rate)
+{
+  cout << "How many shares you purchased?"<< endl;
+  cin >> num_purchases;
+  cout << "How much is each share value?" <<endl;
+  cin >> purchase_price;
+  cout << "How much is commision rate?" <<endl;
+  cin >> pur_comm_rate;
+}
+void getDataSell(double &num_shares, double &sell_price, double &sell_comm_rate)
+{
+  cout << "How many shares you sold?"<<endl;
+  cin >> num_shares;
+  cout << "How much was each share sold at?" <<endl;
+  cin >> sell_price;
+  cout << "How much is the commision rate?" <<endl;
+  cin >> sell_comm_rate;
+}
+double calculateTotalpaid(double &num_purchases, double &purchase_price, double &pur_comm_rate, double &totalPaid)
+{
+  double amountPaidForStock, purchaseCommission;
+
+  amountPaidForStock = (num_purchases*purchase_price);
+  purchaseCommission = (pur_comm_rate*amountPaidForStock);
+  totalPaid = (amountPaidForStock + purchaseCommission);
+  cout <<"The number of shares purchase        :   " << num_purchases << endl;
+  cout <<"The amount paid for stocks           :  $" << amountPaidForStock<< endl;
+  cout <<"The paid commision                   :  $" << purchaseCommission<< endl;
+  cout <<"The total paid for the shares        :  $" << totalPaid<< endl;
+  return totalPaid;
+}
+double calculateTotalReceived(double &num_shares, double &sell_price, double &sell_comm_rate, double &totalReceived)
+{
+  double stocksSoldFor, sellingCommision;
+    stocksSoldFor = (num_shares*sell_price);
+    sellingCommision = (sell_comm_rate*stocksSoldFor);
+    totalReceived = (stocksSoldFor - sellingCommision);
+    cout <<"The number of shares sold            :   " << num_shares << endl;
+    cout <<"The amount recieved for the stocks   :  $" << stocksSoldFor<< endl;
+    cout <<"The amount of comission paid         :  $" << sellingCommision<< endl;
+    cout <<"The total recieved for the shares    :  $" << totalReceived<< endl;
+    return totalReceived;
+}
+
+double calculateLossGain(double &totalReceived, double &totalPaid, double &profitOrloss)
+{
+  profitOrloss = (totalReceived - totalPaid);
+  if(profitOrloss > 0)
+  {
+    cout << "Profit is                            :  $" <<profitOrloss << endl;
+    cout << "We won!" <<endl;
+  }
+  else
+  {
+    cout << "Loss is                              :  $" << profitOrloss << endl;
+    cout << "We lost." << endl;
+  }
+}
