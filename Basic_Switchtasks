@@ -1,0 +1,165 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    int countM = 0;
+    int countS = 0;
+    int countP = 0;
+    int countC = 0;
+    
+    string menu1;
+    string menu2;
+    char choice;
+    double calculation;
+    
+    int a;
+    int b;
+    int c;
+    
+    int gasTank;
+    int recordMiles;
+    double miles;
+    double average;
+    double total;
+    
+    int maxRange;
+    int special;
+    
+    int slope1;
+    int yintercept1;
+    int slope2;
+    int yintercept2;
+    
+    menu1 = "\n\t1.M) Use the Mysterious Formula\n\t2.S)Solve for Mileage of Car";
+    menu2 = "\n\t3.P) Determine if 2 lines are parallel\n\t4.C)Count Numbers\n\t5.E) Exit\n";
+
+    cout << menu1 + menu2;
+    
+    cin >> choice;
+    
+    
+    switch (choice)
+    {
+        case 'M':
+        case 'm':
+            cout << "\nWhat value is a, b, c?";
+            cin >> a >> b >> c;
+            
+            calculation = (pow(a, 4.0)+2*(pow(b,3.0)))/sqrt(c);
+            cout.setf(ios::fixed);
+            cout.setf(ios::showpoint);
+            cout.precision(3);
+            cout << calculation;
+            
+            countM =+1;
+            
+            cout << menu1 + menu2;
+    
+            cin >> choice;
+            break;
+            
+        case 'S':
+        case 's':
+            cout << "\nWhat is the size of your gas tank?";
+            cin >> gasTank;
+            cout << "how many reocrds miles till the gas tank empties?";
+            cin >> recordMiles;
+            
+            do 
+            {
+                cout <<"How many miles did the car run?";
+                cin >> miles;
+                total += miles;
+                recordMiles--;
+            }while (recordMiles > 0);
+            {
+               average = (total)/recordMiles;
+               cout <<"average is "<< average;
+            }
+            
+            countS =+1;
+        
+            cout << menu1 + menu2;
+    
+            cin >> choice;
+            
+        case 'P':
+        case 'p':
+            cout << "What is the slope and the y-intercept";
+            cout << " of the first line?\n";
+            cin >> slope1 >> yintercept1;
+            cout << "\nWhat is the slope and the y-intercept";
+            cout << " of the second line?\n";
+            cin >> slope2 >> yintercept2;
+            
+            if (slope1 == slope2 )
+            {
+                if (yintercept1 == yintercept2)
+                {
+                    cout << "\nSame exact line, therefore not parallel";
+                }
+                else
+                {
+                    cout << "\nLines are parallel";
+                }
+            }
+            else
+            {
+                cout <<"\nLines are not parallel.";
+            }
+            
+            countP =+1;
+            
+            cout << menu1 + menu2;
+    
+            cin >> choice;
+            break;
+        
+        case 'C':
+        case 'c':
+            cout << "What is the max range?";
+            cin >> maxRange;
+            cout << "Please give a special number.";
+            cin >> special;
+            
+            countP =+1;
+            
+            cout << menu1 + menu2;
+    
+            cin >> choice;
+            
+            
+        
+        case 'E':
+            cout << "Program Done";
+            break;
+        case 'e':
+            cout << "Program Done";
+            break;
+            
+        case 'G':
+        case 'g': 
+            choice == 'S';
+            countS =+1;
+            
+            cout << menu1 + menu2;
+    
+            cin >> choice;
+            break;
+        
+    }
+    
+
+    
+  cout << "\nData\n";
+  cout << "C:" << countC;
+  cout << "\nM:" << countM; 
+  cout << "\nP:" << countP;
+  cout << "\nS:" << countS;
+     
+  return 0;
+}
